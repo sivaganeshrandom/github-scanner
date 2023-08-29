@@ -9,7 +9,7 @@
     "setup": "npm install && cd client && npm install",
     "server": "ts-node src/index.ts",
     "server:nodemon": "nodemon src/index.ts",
-    "client": "npm start --prefix client",
+    "client": "npm start --prefix ui",
     "dev": "concurrently \"npm run server:nodemon\" \"npm run client\""
   },
   "dependencies": {

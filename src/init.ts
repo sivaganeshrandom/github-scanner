@@ -2,6 +2,7 @@
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
+import { ApolloServerErrorCode } from '@apollo/server/errors';
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
@@ -17,6 +18,18 @@ export async function startServer() {
         typeDefs,
         resolvers,
         plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+        formatError: (formattedError) => {
+            if (
+                formattedError.extensions?.code ===
+                ApolloServerErrorCode.GRAPHQL_VALIDATION_FAILED
+            ) {
+                return {
+                    ...formattedError,
+                    message: "Your query doesn't match the schema. Try double-checking it!",
+                };
+            }
+            return formattedError;
+        },
     });
 
     await server.start();
