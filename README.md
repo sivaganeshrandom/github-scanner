@@ -4,7 +4,8 @@
 
 1. `yarn run setup` or `npm run setup`
 2. `yarn run dev`
-3. Move the github repositories or project folders to `repos` folder, Example : `repos/repoA`,`repos/repoB`,`repos/repoC`
+3. Github repositories or project folders is stored in the `repos` folder,
+   Example : `repos/repoA`,`repos/repoB`,`repos/repoC`
 
 ### Frontend URL : http://localhost:3000/
 
